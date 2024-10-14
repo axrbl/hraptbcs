@@ -1,0 +1,12 @@
+config CAMERA
+    bool
+
+
+menuconfig SERVICE_CAMERA
+    bool "Camera"
+    default y if CAMERA
+if SERVICE_CAMERA
+
+
+
+endif #SERVICE_CAMERA

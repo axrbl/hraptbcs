@@ -1,0 +1,12 @@
+config CONSOLE
+    bool
+
+
+menuconfig SERVICE_CONSOLE
+    bool "Console"
+    default y if CONSOLE
+if SERVICE_CONSOLE
+
+
+
+endif #SERVICE_CONSOLE

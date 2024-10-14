@@ -1,0 +1,12 @@
+config VIDEO
+    bool
+
+
+menuconfig SERVICE_DISPLAY
+    bool "Video"
+    default y if VIDEO
+if SERVICE_DISPLAY
+
+
+
+endif #SERVICE_DISPLAY

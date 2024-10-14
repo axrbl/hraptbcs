@@ -1,0 +1,7 @@
+menuconfig DIAGNOSE_ASSERT
+    bool "Assertion"
+if DIAGNOSE_ASSERT
+
+
+
+endif #DIAGNOSE_ASSERT

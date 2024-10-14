@@ -1,0 +1,12 @@
+config SECURITY
+    bool
+
+
+menuconfig SERVICE_SECURITY
+    bool "Security"
+    default y if SECURITY
+if SERVICE_SECURITY
+
+
+
+endif #SERVICE_SECURITY

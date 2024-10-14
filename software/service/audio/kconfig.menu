@@ -1,0 +1,12 @@
+config AUDIO
+    bool
+
+
+menuconfig SERVICE_AUDIO
+    bool "Audio"
+    default y if AUDIO
+if SERVICE_AUDIO
+
+
+
+endif #SERVICE_AUDIO

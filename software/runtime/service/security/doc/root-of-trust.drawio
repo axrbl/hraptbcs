@@ -1,0 +1,67 @@
+<mxfile host="65bd71144e">
+    <diagram id="6CTt0rPWv8n7sSTWRLvR" name="Page-1">
+        <mxGraphModel dx="1581" dy="813" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="22" value="&lt;h1 style=&quot;font-size: 18px;&quot;&gt;&lt;u&gt;&lt;font color=&quot;#0a0aa4&quot;&gt;&lt;i&gt;制造商&lt;/i&gt;根证书(MK)&lt;/font&gt;&lt;/u&gt; - 设备出&lt;u&gt;制造商&lt;/u&gt;前一次性注入&lt;/h1&gt;&lt;h1 style=&quot;&quot;&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;用于解决“设备对&lt;u&gt;制造商&lt;/u&gt;的认证”，无此需求则可不包含&lt;/font&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;（&lt;/span&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;在不需要双向认证的非高安全需求下，经过供应方签名的EK解决设备向制造商的远程证明即可&lt;/font&gt;&lt;span style=&quot;font-size: 18px;&quot;&gt;）&lt;/span&gt;&lt;/h1&gt;" style="text;html=1;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;strokeColor=#0000FF;" parent="1" vertex="1">
+                    <mxGeometry x="276" y="50" width="550" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="" style="group" parent="1" vertex="1" connectable="0">
+                    <mxGeometry x="26" y="50" width="240" height="489.99818181818176" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="" style="rounded=1;whiteSpace=wrap;html=1;" parent="31" vertex="1">
+                    <mxGeometry width="240" height="428.6363636363636" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="&lt;b&gt;EK - Endorsement Key&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#000000;strokeWidth=3;" parent="31" vertex="1">
+                    <mxGeometry x="26.67" y="120" width="186.67" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="EK.private[] //DONOT export!" style="text;strokeColor=#A50040;fillColor=#d80073;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#ffffff;" parent="7" vertex="1">
+                    <mxGeometry y="30" width="186.67" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="EK.prublic[] //&lt;u&gt;exportable&lt;/u&gt;" style="text;strokeColor=#005700;fillColor=#008a00;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#ffffff;" parent="7" vertex="1">
+                    <mxGeometry y="50" width="186.67" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="EK.prublic.signature.SELF[] //&lt;u&gt;&amp;nbsp;optional if&amp;nbsp;&lt;/u&gt;&lt;u style=&quot;border-color: var(--border-color);&quot;&gt;exportable&lt;/u&gt;" style="text;strokeColor=#005700;fillColor=#008a00;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#ffffff;" parent="7" vertex="1">
+                    <mxGeometry y="70" width="186.67" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="&lt;b&gt;Root Cert.&lt;/b&gt;&lt;b style=&quot;border-color: var(--border-color);&quot;&gt;MANUFACTURE&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#0050ef;fontColor=#ffffff;strokeColor=#001DBC;strokeWidth=3;" parent="31" vertex="1">
+                    <mxGeometry x="26.666666666666664" y="10.45" width="186.66666666666666" height="92.72727272727272" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="RC.pubkey[]" style="text;strokeColor=#006EAF;fillColor=#1ba1e2;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#ffffff;" parent="17" vertex="1">
+                    <mxGeometry y="30" width="186.66666666666666" height="31.363636363636363" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="RC.pubkey.self_signature[]" style="text;strokeColor=#006EAF;fillColor=#1ba1e2;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#ffffff;" parent="17" vertex="1">
+                    <mxGeometry y="61.36363636363636" width="186.66666666666666" height="31.363636363636363" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="&lt;b&gt;SRK - Storage Root Key&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#a20025;fontColor=#ffffff;strokeColor=#000000;strokeWidth=3;" parent="31" vertex="1">
+                    <mxGeometry x="26.666666666666664" y="279.9972727272727" width="186.66666666666666" height="61.36363636363636" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="SRK.array[] //DONOT export!" style="text;strokeColor=#A50040;fillColor=#d80073;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#ffffff;" parent="20" vertex="1">
+                    <mxGeometry y="30" width="186.66666666666666" height="31.363636363636363" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="Isolated secure &amp;amp; immutable&amp;nbsp; space &lt;br&gt;&amp;lt;such as OTP.sec-internal&amp;gt;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontStyle=1;strokeWidth=3;" parent="31" vertex="1">
+                    <mxGeometry x="13.33" y="341.36" width="226.67" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="37" value="EK.prublic.signature.MANU[] //&lt;u&gt;exportable &amp;amp; optional&lt;/u&gt;" style="text;strokeColor=#005700;fillColor=#008a00;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#ffffff;" parent="31" vertex="1">
+                    <mxGeometry x="26.666666666666686" y="229.99545454545455" width="186.66666666666666" height="31.363636363636363" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="&lt;b&gt;BootROM&lt;/b&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;fillColor=#666666;fontColor=#ffffff;strokeColor=#666600;strokeWidth=3;" parent="31" vertex="1">
+                    <mxGeometry x="26.676666666666662" y="428.6345454545454" width="186.66666666666666" height="61.36363636363636" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="RO.data[]" style="text;strokeColor=#666600;fillColor=#B3B3B3;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;fontColor=#ffffff;" parent="24" vertex="1">
+                    <mxGeometry y="30" width="186.66666666666666" height="31.363636363636363" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" value="&lt;h1&gt;&lt;font style=&quot;font-size: 20px;&quot;&gt;&lt;u&gt;BootROM&lt;/u&gt;的安全性{主要是不可篡改性}，是所有信任的起点&lt;/font&gt;&lt;/h1&gt;" style="text;html=1;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;strokeColor=#666600;strokeWidth=2;" parent="1" vertex="1">
+                    <mxGeometry x="246" y="500" width="580" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="&lt;h1 style=&quot;font-size: 18px;&quot;&gt;&lt;u&gt;&lt;font color=&quot;#b60c0c&quot;&gt;设备根证书(EK)&lt;/font&gt;&lt;/u&gt; - &lt;span style=&quot;&quot;&gt;设备内部自行生成；&lt;/span&gt;&lt;/h1&gt;&lt;h1 style=&quot;font-size: 18px;&quot;&gt;&lt;span style=&quot;&quot;&gt;私钥严格保密（仅允许安全应用在安全区域内访问）；&lt;/span&gt;&lt;/h1&gt;&lt;h1 style=&quot;font-size: 18px;&quot;&gt;&lt;span style=&quot;&quot;&gt;公钥可导出，并包含自签名（用于自证明）和制造商签名（用于远程证明设备身份）&lt;/span&gt;&lt;/h1&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;另，其也常作为KDF的一个参数使用，从而KEK的复现绑定于特定的设备&lt;/span&gt;&lt;/div&gt;" style="text;html=1;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;strokeColor=#660033;" parent="1" vertex="1">
+                    <mxGeometry x="276" y="170" width="550" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" value="&lt;h1 style=&quot;font-size: 18px;&quot;&gt;&lt;u&gt;&lt;font color=&quot;#bd0a0a&quot;&gt;安全存储根密钥(SRK)&lt;/font&gt;&lt;/u&gt; - &lt;span style=&quot;&quot;&gt;设备内部自行生成；&lt;/span&gt;&lt;/h1&gt;&lt;h1 style=&quot;font-size: 18px;&quot;&gt;&lt;span style=&quot;&quot;&gt;作为3级Ladder Key的L0（仅允许安全应用在安全区域内访问）生成L2的KEK&lt;/span&gt;&lt;/h1&gt;&lt;div&gt;&lt;span style=&quot;&quot;&gt;KEK - Key Encrypt Key（在与上EK不冲突的上下文中，也常叫做EK） 一般基于SKR和特定的输入进行KDF生成，要求在本设备上固定的输入产生固定的输出（即：KEK一般不做持久化存储，因此需要其具备可复现性）其&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;用作加密末级的L2 （leaf）Key，也就是保证LK的安全&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;L2 （Leaf）Key：具体的业务使用的一次性密钥，一般附加在证书/密文内容中，由解密方基于KDF复现EK后对齐解密得到原始的LK，而后使用其对数据进行解密&lt;/span&gt;&lt;/div&gt;" style="text;html=1;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;strokeColor=#660033;" parent="1" vertex="1">
+                    <mxGeometry x="276" y="320" width="550" height="170" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

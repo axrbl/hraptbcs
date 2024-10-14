@@ -1,0 +1,7 @@
+menuconfig DIAGNOSE_TRACE
+    bool "Trace"
+if DIAGNOSE_TRACE
+
+
+
+endif #DIAGNOSE_TRACE

@@ -1,0 +1,8 @@
+############################################################################
+mainmenu "Highly Reliable & Accurate Predicted Time-Bound Completion System"
+############################################################################
+
+
+rsource "soc/$(SOC)/kconfig.menu"
+
+rsource "modules/*/kconfig.menu"

@@ -1,0 +1,12 @@
+config PPM
+    bool
+
+
+menuconfig SERVICE_PPM
+    bool "Power & Performance Management"
+    default y if PPM
+if SERVICE_PPM
+
+
+
+endif #SERVICE_PM

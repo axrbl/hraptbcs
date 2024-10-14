@@ -1,0 +1,12 @@
+config DIAGNOSE
+    bool
+
+
+menuconfig SERVICE_DIAGNOSE
+    bool "Diagnose"
+    default y if DIAGNOSE
+if SERVICE_DIAGNOSE
+
+rsource "*/kconfig.menu"
+
+endif #SERVICE_DIAGNOSE
