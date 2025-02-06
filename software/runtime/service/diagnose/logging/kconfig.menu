@@ -1,0 +1,7 @@
+menuconfig DIAGNOSE_LOGGING
+    bool "Logging"
+if DIAGNOSE_LOGGING
+
+
+
+endif #DIAGNOSE_LOGGING

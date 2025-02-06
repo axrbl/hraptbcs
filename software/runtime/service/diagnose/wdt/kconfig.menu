@@ -1,0 +1,7 @@
+menuconfig DIAGNOSE_WDT
+    bool "Watchdog"
+if DIAGNOSE_WDT
+
+
+
+endif #DIAGNOSE_WDT

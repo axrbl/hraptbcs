@@ -1,0 +1,134 @@
+#!/bin/bash -e
+
+usage='build `application` with specified `board`:
+  make [-p $platform] [-m $mode@eng/usr_dbg/usr] $application
+
+  The following argument is also supported:
+   -a/b/r          : equals to "-m eng/usr_dbg/usr"
+   -A $app_base    : base for application, default@ `CWD`
+   -B $base_dir    : base directory, need if 
+   -P $platform_ext: base of extra hardware platform for $board\$device\$soc`
+   -O $out_base    : base for build output, default@ `CWD/build`
+   -o $out_dir     : directory for output of current build, default@ `$out_base/`
+   -j $jobs        : parallel compiler threads for build jobs
+   -M / menuconfig : menuconfig for build configurations
+   -c/C / clean    : clean legacy/entire build
+   -t $target      : make specified `target`
+   -h / help       : show this help info.
+
+  $board & $soc is specified as `$manufacturer/$model` relative to corresponding $xxx_base.
+'
+
+
+cwd=.
+jobs=6
+
+target=build/config
+if [ -f "$target" ]; then
+    source $target
+fi
+
+
+while getopts ":aA:bB:cCj:o:O:p:P:rm:Mt:h" opt; do
+  case ${opt} in
+    a ) mode="ENGINEER"           ;;
+    b ) mode="USER_DEBUG"         ;;
+    r ) mode="USER"               ;;
+    c ) clean=true                ;;
+    m ) mode=$OPTARG              ;;
+    B ) base=$OPTARG              ;;
+    O ) out_base=$OPTARG          ;;
+    o ) output=$OPTARG            ;;
+    j ) jobs=$OPTARG              ;;
+    t ) target=$OPTARG            ;;
+    p ) board=$OPTARG             ;;
+    P ) platform=$OPTARG          ;;
+    M ) menuconfig=true           ;;
+    C ) rm -Rf build/*/ && exit 0 ;; 
+    h ) echo "$usage"   && exit 0 ;;
+    : )
+      echo "Error: Option -$OPTARG requires an argument" >&2
+      exit 1
+      ;;
+    \? )
+      echo "Error: Invalid option -$OPTARG" >&2
+      exit 1
+      ;;
+  esac
+done
+shift $((OPTIND -1))
+
+target=$1
+
+
+# find base & cd to
+if [ -z "$base" ]; then
+  base=$cwd
+  while [ "$base" != "/" ]; do
+    if [ -d "$base/.env" ]; then
+      # echo "Base @$(realpath "$base")"
+      break
+    else #[ -z "$base/.env" ]
+      rebase=true
+      base=$(dirname "$base")
+    fi #[ -d "$base/.env" ]
+  done #[ $base != "/" ]
+
+  if [ "$base" == "/" ]; then
+      echo "No .env directory found in any parent directory of $(realpath "$cwd")"
+      exit -1
+  fi #[ $base == "/" ]
+fi #[ -z $base ]
+
+# detect & create output (directory)
+if [ -z "$out_base" ]; then
+  out_base="$base/build"
+fi #[ -z $out_base ]
+if [ -z "$output" ]; then
+  output=$(basename "$app")
+fi #[ -z $out_dir ]
+export out_dir=$out_base/$output
+if [ ! -d "$out_dir" ]; then
+  mkdir -p "$out_dir"
+fi #[ -z $out_dir ]
+
+# export global symbols for build
+export APP=$app
+export BOARD=$board
+
+if [ -n "$rebase" ]; then
+  cd "$base"
+fi #[ -n $rebase ]
+
+# -c: clean
+if [ -n "$clean" ] || [ "$target" == "clean" ]; then
+  rm -Rf "$out_dir"
+  code=$?
+  
+  if [ -n "$rebase" ]; then
+    cd -
+  fi #[ -n "$rebase" ]
+  exit $code
+fi #[ -n $clean ]
+
+# -M/-t menuconfig: menuconfig
+export KCONFIG_CONFIG=$out_dir/.config
+if [ -n "$menuconfig" ] || [ "$target" == "menuconfig" ]; then
+  python3 scripts/kconfig/menuconfig.py runtime/Kconfig
+  code=$?
+  
+  if [ -n "$rebase" ]; then
+    cd -
+  fi #[ -n "$rebase" ]
+  exit $code
+fi #[ -n $menuconfig ]
+
+
+# make
+# TODO: how to make?
+# code=$?
+
+if [ -n "$rebase" ]; then
+  cd -
+fi #[ -n "$rebase" ]
+exit $code

@@ -1,0 +1,123 @@
+# Copyright (c) 2024 libryan@outlook.com
+# SPDX-License-Identifier: Apache-2.0
+#
+# menuconfig @'Real Time Application Build System / Build Options'
+#
+
+
+choice TARGET_BUILD_MODE
+    bool "Target Build Mode"
+    config BUILD_FOR_ENGINEER
+        bool "engineer - build for development & debugging purpose only"
+
+    config BUILD_FOR_USER_DBG
+        bool "user_debug - build for preview purpose, such as alpha|beta|rc version"
+
+    config BUILD_FOR_USER
+        bool "user - build for final user or rc version"
+endchoice #TARGET_BUILD_MODE
+
+
+choice #TOOLCHAIN
+    bool "Toolchain"
+    config TOOLCHAIN_AUTO_DETECTED
+        bool "auto detect"
+
+    config TOOLCHAIN_GCC
+        bool "GNU-CC"
+
+    config TOOLCHAIN_CLANG
+        bool "LLVM-Clang"
+
+    config TOOLCHAIN_ARMCLANG
+        depends on ARCH_ARM
+        bool "ARM-Clang"
+endchoice #Select
+
+config TOOLCHAIN
+    default "armclang"  if TOOLCHAIN_ARMCLANG
+    default "clang"     if TOOLCHAIN_CLANG
+    default "gcc"      #if TOOLCHAIN_GCC
+    string
+
+config TOOLCHAIN_PREFIX
+    string "Prefix for toolchain"
+    default ""
+
+
+menu "Compile"
+    config CFLAGS
+        string "Common C/C++ flags"
+        default ""
+
+    menuconfig OPTIMIZATION_BY_BUILD_MODE
+    bool "Auto &| specified optimization by build mode"
+    default y
+    help
+        Optimization flags will be used from default value or menuconfig's
+        Specification if this option be selected by deault.
+        Otherwise: it shuld be specified in toolchain's `C/C++ Specific`.
+
+    if OPTIMIZATION_BY_BUILD_MODE
+        config CC_OPTIMIZATION_FOR_ENGINEER
+            string "Optimization for `engineer` build"
+            default "-O1 -g"  if TOOLCHAIN_CLANG || TOOLCHAIN_ARMCLANG
+            default "-Og -g" #if TOOLCHAIN_GCC
+
+        config CC_OPTIMIZATION_FOR_USERDEBUG
+            string "Optimization for `user_debug` build"
+            default "-Os -g"
+
+        config CC_OPTIMIZATION_FOR_USER
+            string "Optimization for `user` build"
+            default "-Os"
+
+        config CC_OPTIMIZATION
+            default CC_OPTIMIZATION_FOR_USER_DBG  if BUILD_FOR_USER_DBG
+            default CC_OPTIMIZATION_FOR_USER      if BUILD_FOR_USER
+            default CC_OPTIMIZATION_FOR_ENGINEER #if BUILD_FOR_ENGINEER
+            string
+    endif #OPTIMIZATION_BY_BUILD_MODE
+
+    config CC_WARN_ALL
+        bool "Enable all compile warnings"
+        default n if BUILD_FOR_ENG
+        default y
+
+    config CC_WARN_AS_ERROR
+        bool "Treat the warnning as an error"
+        default y
+endmenu #Compile
+
+
+menu "Link"
+    config TARGET_NAME
+        string "Target program name"
+        default "$(TARGET)"
+
+    config TARGET_SUFFIX
+        string "Target program suffix"
+        default "elf"
+
+    config LFLAGS
+        string "Extras flag(s)"
+        default ""
+
+    config ROM_LINK
+        bool "Rom link Mode"
+        default n
+        help
+            Marks program will boot from ROM & self extracted, MUST be selected by BootROM
+
+    config LINK_SCRIPT
+        string "Link script"
+        default "link.sct" if TOOLCHAIN_ARMCLANG
+        default "link.ld"
+        help
+            The path relative to the board
+
+    config OUT_STRIPED
+        bool "Strip final target"
+        default y if BUILD_FOR_USER
+        default n
+endmenu #Link

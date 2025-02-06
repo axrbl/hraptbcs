@@ -1,0 +1,12 @@
+config STORAGE
+    bool
+
+
+menuconfig SERVICE_STORAGE
+    bool "Storage"
+    default y if STORAGE
+if SERVICE_STORAGE
+
+
+
+endif #SERVICE_STORAGE

@@ -1,0 +1,12 @@
+config DISPLAY
+    bool
+
+
+menuconfig SERVICE_DISPLAY
+    bool "Display"
+    default y if DISPLAY
+if SERVICE_DISPLAY
+
+
+
+endif #SERVICE_DISPLAY

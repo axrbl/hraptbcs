@@ -1,0 +1,6 @@
+config ARCH_ARM
+    bool
+
+
+config ARM
+    bool "ARM"

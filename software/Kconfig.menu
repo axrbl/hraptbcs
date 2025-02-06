@@ -1,0 +1,35 @@
+############################################################################
+mainmenu "Highly Reliable & Accurate Predicted Time-Bound Completion System"
+############################################################################
+
+
+menu "Application / Sample / Test"
+    source "$(APP)/Kconfig.*"
+    menu "Build Options"
+        source "scripts/build/Kconfig"
+    endmenu #Build Options
+endmenu #Application
+
+
+menu "Hardware Board Platform"
+    source "platform/board/$(BOARD)/Kconfig$(BRDVER)"
+    source "platform/soc/$(soc)/Kconfig"
+    menu "Architecture<$(normalize_upper,$(arch))> Processor"
+        source "runtime/arch/Kconfig"
+    endmenu #Architecture<???> Processor
+    menu "Peripheral Devices & Drivers"
+        source "runtime/device/Kconfig"
+    endmenu #Peripheral Devices & Drivers
+endmenu #Hardware Board Platform
+
+
+menu "Software Runtime"
+    source "runtime/kernel/Kconfig"
+endmenu #Software Runtime
+
+
+menu "SubSystem & Service"
+     source "runtime/service/*/Kconfig"
+    osource "service/*/Kconfig"
+    osource "platform/service/*/Kconfig"
+endmenu #SubSystem & Service

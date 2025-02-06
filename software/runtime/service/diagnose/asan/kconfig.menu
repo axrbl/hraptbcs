@@ -1,0 +1,7 @@
+menuconfig DIAGNOSE_ASAN
+    bool "AddressSanitizer"
+if DIAGNOSE_ASAN
+
+
+
+endif #DIAGNOSE_ASAN

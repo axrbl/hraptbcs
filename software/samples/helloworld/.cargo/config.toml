@@ -1,0 +1,12 @@
+
+[build]
+target = "thumbv7m-none-eabi"  # Cortex-M3目标架构
+
+[target.thumbv7m-none-eabi]
+rustflags = [
+    "-C", "linker=rust-lld",                            # 使用Rust自带的链接器，注释此行则使用GNU链接器
+   #"-C", "link-arg=-nostartfiles",                       禁用标准启动文件，GNU链接器需要禁用，rust-lld不需要
+    "-C", "link-arg=-Thelloworld.ld",                   # 指定链接脚本：GNU连接器需要额外使用-Wl转换，rust-lld不需要
+    "-C", "link-arg=-Map=target/hellorord.map",         # 生成map文件
+    "-C", "relocation-model=static"
+]

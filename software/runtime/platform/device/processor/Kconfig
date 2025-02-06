@@ -1,0 +1,3 @@
+
+
+rsource "$(ARCH)/Kconfig"

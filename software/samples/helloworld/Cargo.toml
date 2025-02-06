@@ -1,0 +1,12 @@
+[package]
+name = "helloworld"
+version = "0.1.0"
+edition = "2021"
+
+[profile.dev]
+panic = "abort"    # 禁用panic展开
+opt-level = 0      # 保留调试信息
+
+[profile.release]
+panic = "abort"
+opt-level = 3
