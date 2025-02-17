@@ -1,0 +1,6 @@
+import("//rust_rules.gni")  # 必须添加这行
+
+rust_executable("hello_rust") {
+  sources = [ "src/main.rs" ]
+  rustflags = [ "--edition=2021" ]
+}

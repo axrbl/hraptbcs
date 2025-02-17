@@ -1,0 +1,27 @@
+# 定义 Rust 可执行文件模板
+template("rust_executable") {
+  # 参数解析
+  target_name = target_name
+  sources = []
+  deps = []
+  rustflags = []
+  edition = "2021"
+
+  # 构建动作
+  action(target_name) {
+    script = "//rust_rules.gni:compile_rust"
+    inputs = sources
+    outputs = [ "$target_out_dir/$target_name" ]
+    args = [
+      "--rustc",
+      rebase_path("${rustc_path}", root_build_dir),
+      "--sources",
+      rebase_path(sources, root_build_dir),
+      "--out",
+      rebase_path(outputs[0], root_build_dir),
+      "--edition",
+      edition,
+    ] + rustflags
+    deps = deps
+  }
+}

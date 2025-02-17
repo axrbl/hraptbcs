@@ -1,0 +1,16 @@
+declare_args() {
+  rustc_path = "~/.cargo/bin/rustc"  # 修改为实际路径
+  rust_ld = "clang"
+}
+
+# 工具链需关联到构建规则
+toolchain("rust_toolchain") {
+  tool("rustc") {
+    command = "${rustc_path} -C linker=${rust_ld} $rustflags -o $out $in"
+    description = "RUSTC ${out}"
+    outputs = [ "${target_out_dir}/${target_output_name}" ]
+  }
+}
+
+# 必须导入规则定义
+import("//rust_rules.gni")
